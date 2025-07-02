@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "cypress": "^14.4.0"
+  },
+  "dependencies": {
+    "chai": "^5.1.0",
+    "chai-jquery": "^2.1.0",
+    "cypress-if": "^1.12.0"
+  }
+}
