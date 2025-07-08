@@ -11,7 +11,9 @@ class cart {
 
     #elements = {
         deleteBtn: (title) => { return cy.get(".success").contains(title).parent().find("a") },
-        placeOrderBtn: () => { return cy.get("button").contains(this.#strings.placeOrderBtn) }
+        placeOrderBtn: () => { return cy.get("button").contains(this.#strings.placeOrderBtn) },
+        okButton: () => {return cy.contains('.sa-confirm-button-container', this.#strings.ok).find('button')},
+        closeButton: () => {return cy.contains('.modal-header', this.#strings.placeOrder).find('button')}
     };
 
     #strings = {
@@ -19,7 +21,10 @@ class cart {
         productRow: ".success",
         placeOrderBtn: "Place Order",
         purchaseBtn: "Purchase",
-        thankYou: "thank you for your purchase!"
+        thankYou: "Thank you for your purchase!",
+        ok: 'OK',
+        placeOrder: 'Place order',
+        close: 'Close'
     };
 
     #ids = {
@@ -61,13 +66,19 @@ class cart {
     }
 
     verifyDeleteByTitle(title) {
-        cy.get("body").contains("Samsung galaxy s6").should("not.exist")
+        cy.get("td").contains(title).should("not.exist")
     }
 
     verifyPurchase() {
         cy.get(this.#ids.thankYouAlert).contains(this.#strings.thankYou);
 
     }
+
+    closeThankYouPopup() {
+        this.#elements.okButton().click();
+        this.#elements.closeButton().scrollIntoView().should('be.visible').click();
+    }
+
     #openOrderDialog() {
         this.#elements.placeOrderBtn().scrollIntoView().click();
         cy.get(this.#ids.orderModal).should("be.visible");

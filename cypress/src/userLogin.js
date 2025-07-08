@@ -6,6 +6,7 @@ class userLogin {
     };
     #ids = {
         loginWindowBtn: "#login2",
+        logoutBtn: "#logout2",
         usernameField: '#loginusername',
         passwordField: '#loginpassword',
         navBar: "#navbarExample"
@@ -50,6 +51,7 @@ class userLogin {
         this.#clickLoginBtn();
         this.#checkLogon();
     }
+
 }
 
 module.exports = new userLogin();

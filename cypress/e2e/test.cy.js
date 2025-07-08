@@ -1,12 +1,11 @@
 import cart from '../src/cart'
 import selectItems from '../src/selectItems'
-import userLogin  from '../src/userLogin'
+import userLogin, { login }  from '../src/userLogin'
 
 describe('Test buy phone and laptop on store', () => {
   before(()=>
   {
     cy.visit('/');
-    cy.viewport('macbook-16');
   })
   
   it('login', () => {
@@ -17,13 +16,17 @@ describe('Test buy phone and laptop on store', () => {
     selectItems.addCheapestPhone();
   });
 
+  it ('select galaxy s7 phone', () => {
+    //TODO
+  });
+
   it ('select laptop', () =>{
     selectItems.addExpensiveLaptop();
-  })
+  });
 
   it ('select monitor', () =>{
     selectItems.addMonitor();
-  })
+  });
 
   it ('delete phone and go to checkout', () => {
     cart.deleteByTitle("Sony xperia z5");
@@ -33,6 +36,11 @@ describe('Test buy phone and laptop on store', () => {
   it ('go to checkout', () => {
     cart.placeOrder();
     cart.verifyPurchase();
+    cart.closeThankYouPopup();
+  });
+
+  it ('logout', () => {
+    //TODO
   });
 });
 
